@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(160deg, #fff8f2 0%, #fefefe 55%, #f2f7ff 100%);
+  color: #1f2937;
+}
+
+.app-shell {
+  width: min(960px, 92vw);
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.app-shell__header {
+  margin-bottom: 1.5rem;
+}
+
+.app-shell__header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.app-shell__header p {
+  margin: 0.4rem 0 0;
+  color: #4b5563;
+}

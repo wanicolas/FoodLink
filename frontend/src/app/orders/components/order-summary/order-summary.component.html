@@ -1,0 +1,50 @@
+<section class="order-summary">
+  <header class="order-summary__header">
+    <h2>Recapitulatif de la commande</h2>
+    <p *ngIf="currentOrderId !== null">Commande #{{ currentOrderId }}</p>
+  </header>
+
+  <div *ngIf="isLoading" class="state-card">Chargement de la commande...</div>
+
+  <div *ngIf="!isLoading && errorMessage" class="state-card state-card--error">
+    {{ errorMessage }}
+  </div>
+
+  <article *ngIf="!isLoading && order" class="summary-card">
+    <div class="summary-grid">
+      <div>
+        <span class="label">ID</span>
+        <strong>{{ order.id }}</strong>
+      </div>
+      <div>
+        <span class="label">Etat</span>
+        <strong>{{ getStatusLabel(order.status) }}</strong>
+      </div>
+      <div>
+        <span class="label">Total</span>
+        <strong>{{ order.totalPrice | number: "1.2-2" }} EUR</strong>
+      </div>
+    </div>
+
+    <h3>Elements</h3>
+
+    <table class="items-table" aria-label="Liste des elements de la commande">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prix unitaire</th>
+          <th>Quantite</th>
+          <th>Sous-total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order.items; trackBy: trackByItem">
+          <td>{{ item.name }}</td>
+          <td>{{ item.price | number: "1.2-2" }} EUR</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ lineTotal(item) | number: "1.2-2" }} EUR</td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+</section>
